@@ -13,10 +13,11 @@ export class Triangle implements Figure {
     private b: number,
     private c: number,
   ) {
+    if (this.a <= 0 || this.b <= 0 || this.c <= 0) {
+      throw new Error('Довжини трикутника не можуть бути менші-рівні за нуль');
+    }
+
     if (
-      this.a <= 0 ||
-      this.b <= 0 ||
-      this.c <= 0 ||
       this.a + this.b <= this.c ||
       this.a + this.c <= this.b ||
       this.b + this.c <= this.a
