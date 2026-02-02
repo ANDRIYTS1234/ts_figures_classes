@@ -8,7 +8,7 @@ export class Triangle implements Figure {
   readonly shape = 'triangle';
 
   constructor(
-    public color,
+    public color: 'red' | 'green' | 'blue',
     private a: number,
     private b: number,
     private c: number,
@@ -21,7 +21,9 @@ export class Triangle implements Figure {
       this.a + this.c <= this.b ||
       this.b + this.c <= this.a
     ) {
-      throw new Error('Довжини трикутника введені некоректно!!!');
+      throw new Error(
+        'Довжини введені некоректно і не можуть сформувати трикутник',
+      );
     }
   }
 
@@ -37,7 +39,7 @@ export class Circle implements Figure {
   readonly shape = 'circle';
 
   constructor(
-    public color,
+    public color: 'red' | 'green' | 'blue',
     private radius: number,
   ) {
     if (this.radius <= 0) {
@@ -56,12 +58,14 @@ export class Rectangle implements Figure {
   readonly shape = 'rectangle';
 
   constructor(
-    public color,
+    public color: 'red' | 'green' | 'blue',
     private width: number,
     private height: number,
   ) {
     if (this.width <= 0 || this.height <= 0) {
-      throw new Error('Довжини прямокутника введені некоректно!!!');
+      throw new Error(
+        'Довжини прямокутника не можуть бути менші-рівні за нуль',
+      );
     }
   }
 
@@ -70,6 +74,6 @@ export class Rectangle implements Figure {
   }
 }
 
-export function getInfo(figure): string {
+export function getInfo(figure: Figure): string {
   return `A ${figure.color} ${figure.shape} - ${figure.getArea()}`;
 }
